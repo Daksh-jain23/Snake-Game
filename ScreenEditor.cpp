@@ -16,6 +16,7 @@ class CursorController {
     inline static HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     inline static bool cursorHidden = false;
 public:
+// Remove Cursor
     static void RemoveCursor() {
         if (cursorHidden) return;
         hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -28,13 +29,13 @@ public:
             cursorHidden = true;
         }
     }
-
+// Reset cursor at 0,0
     static void ResetCursor() {
         if (!hConsole) hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         COORD pos = {0, 0};
         SetConsoleCursorPosition(hConsole, pos);
     }
-
+// Clear Screen
     static void ClearScreen() {
         if (!hConsole) hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -66,7 +67,7 @@ public:
 
         SetConsoleCursorPosition(hConsole, homeCoords);
     }
-
+// Set font sqyare
     static void SetSquareConsoleFont(short size = 8) {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -81,7 +82,7 @@ public:
 
         SetCurrentConsoleFontEx(hConsole, FALSE, &cfi);
     }
-
+// write string at x,y
     static void WriteAt(int x, int y, const string& text) {
         if (!hConsole) hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         COORD pos = {static_cast<SHORT>(x), static_cast<SHORT>(y)};
