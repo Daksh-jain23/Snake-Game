@@ -4,13 +4,13 @@
 
 namespace CursorController {
 
-    extern HANDLE hConsole;
-    extern bool cursorHidden;
+    extern HANDLE hConsole;    // Handler
+    extern bool cursorHidden;  // Is cursor hidden or not
 
-    void RemoveCursor();
-    void ResetCursor();
-    void ClearScreen();
-    void SetSquareConsoleFont(short size = 8);
-    void WriteAt(int x, int y, const std::string& text);
+    void RemoveCursor();  // Remove Cursor
+    void ResetCursor();   // Reset Cursor
+    void ClearScreen();   // Clear Screen
+    void SetSquareConsoleFont(short size = 8);  // Set cell size squarely
+    void WriteAt(int x, int y, const std::string& text);  // Custom print
 
 }

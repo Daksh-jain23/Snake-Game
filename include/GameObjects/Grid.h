@@ -1,12 +1,12 @@
 #pragma once
-
+#define XtoY 0.4
 class Grid {
 public:
     Grid(int w, int h);
-    void Draw() const;
+    void Draw() const;    // Draw Grid
 
-    int Width() const;
-    int Height() const;
+    int Width() const;    // Get width
+    int Height() const;   // Get height
 
 private:
     int width, height;
