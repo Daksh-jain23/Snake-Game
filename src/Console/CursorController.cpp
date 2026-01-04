@@ -1,6 +1,9 @@
-#include "CursorController.h"
+#include "Console/CursorController.h"
 
 namespace CursorController {
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    bool cursorHidden = false;
 
     void RemoveCursor() {
         if (cursorHidden) return;

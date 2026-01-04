@@ -1,12 +1,11 @@
 #pragma once
-#include <iostream>
-#include <windows.h>
 #include <string>
+#include <windows.h>
 
 namespace CursorController {
 
-    inline HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    inline bool cursorHidden = false;
+    extern HANDLE hConsole;
+    extern bool cursorHidden;
 
     void RemoveCursor();
     void ResetCursor();
