@@ -1,19 +1,24 @@
 #pragma once
 #include <deque>
 
-struct Points{
+struct Point{
     int x, y;
+    bool operator==(const Point &a){
+        return (x == a.x) && (y == a.y);
+    }
 };
 
 enum Direction{Up, Down, Left, Right};
 
+Point DirectionMap(Direction dir);
+
 class Snake{
-    std::deque<Points> body;
+    std::deque<Point> body;
     bool grow;
     Direction dir = Right;
-
+    double speed;
 public:
-    Snake(int x, int y, int l);
+    Snake(int x, int y, int l, double s);
 
     // Is growing or not
     void Grow();         
@@ -21,12 +26,18 @@ public:
     // Draw the snakes 
     void Draw();    
 
+    // Move
+    void Move();
+
     // Check if colliding with itself or not
     bool CheckSelfCollision();    
 
-    // Gets Current Direction of movement
-    Points GetCurrentDirection();       
-
     // Set Direction
-    void SetDirection(Direction newdir);
+    void SetDirection(Direction &newdir);
+
+    // Get Body
+    std::deque<Point>& GetBody();
+
+    // Get Head
+    Point& GetHead();
 };
