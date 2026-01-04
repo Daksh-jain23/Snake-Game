@@ -1,6 +1,6 @@
-#include <Core/Game.h>
+#include "Core/Game.h"
 
-Game::Game() : grid(100, 100*XtoY){}
+Game::Game() : grid(48, 48){}
 
 void Game::Run(){
     grid.Draw();

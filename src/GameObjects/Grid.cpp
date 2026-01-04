@@ -1,18 +1,22 @@
 #include "GameObjects/Grid.h"
 #include "Console/CursorController.h"
+#include "Utility/Constants.h"
+
 using namespace CursorController;
 Grid::Grid(int w, int h) : width(w), height(h) {}
 
 void Grid::Draw() const {
     for (int x = 0; x <= width; x++) {
-        WriteAt(x, 0, "#");
-        WriteAt(x, height, "#");
+        WriteAt(x * YtoX, 0, "# ");
+        WriteAt(x * YtoX, height, "# ");
     }
-    for (int y = 0; y <= height; y++) {
+
+    for (int y = 1; y <= height; y++) {
         WriteAt(0, y, "#");
-        WriteAt(width, y, "#");
+        WriteAt(width * YtoX, y, "#");
     }
 }
+
 
 int Grid::Width() const { return width; }
 int Grid::Height() const { return height; }

@@ -1,5 +1,5 @@
 #pragma once
-#define XtoY 0.4
+
 class Grid {
 public:
     Grid(int w, int h);
