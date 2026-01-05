@@ -3,20 +3,26 @@
 #include "utility/Constants.h"
 using namespace CursorController;
 
+// Map enum to point
 Point DirectionMap(Direction dir){
-    if(dir == Up) return {0, 1};
-    if(dir == Down) return {0, -1};
+    if(dir == Up) return {0, -1};
+    if(dir == Down) return {0, 1};
     if(dir == Left) return {-1, 0};
     if(dir == Right) return {1, 0};
+    return {0,0};
 }
 
+/* Intializing snake
+x,y - starting head posn
+l = intial length
+s = speed*/
 Snake::Snake(int x, int y, int l, double s) {
     body.push_front({x, y});
     for(int i = 1;i < l;i++){
         Point p = body.front();
-        body.push_back({p.x - 1, p.y});
+        body.push_back({p.x - i, p.y});
     }
-   
+    dir = Right;
     grow = false;
     speed = s;
 } 
@@ -25,30 +31,54 @@ void Snake::Grow(){
     grow = true;
 }
 
-void Snake::Draw(){
+void Snake::InitDraw() {
+    // draw head
     Point head = body.front();
     WriteAt(head.x * YtoX, head.y, "@");
-    for(int i = 1;i < body.size();i++){
-        Point a = body[i];
-        WriteAt(a.x * YtoX, a.y, "O");
+
+    // draw body
+    for (int i = 1; i < body.size(); i++) {
+        Point p = body[i];
+        WriteAt(p.x * YtoX, p.y, "O");
     }
 }
 
-void Snake::Move(){
-    Point a = DirectionMap(dir);
+
+void Snake::Draw() {
     Point head = body.front();
-    body.push_front({head.x + a.x, head.y + a.y});
-    if(!grow) body.pop_back();
+    WriteAt(head.x * YtoX, head.y, "@");
+
+    // turn previous head into body
+    if (body.size() > 1) {
+        Point prev = body[1];
+        WriteAt(prev.x * YtoX, prev.y, "O");
+    }
+}
+
+
+void Snake::Move(){
+    Point del = DirectionMap(dir);
+    Point head = body.front();
+    body.push_front({head.x + del.x, head.y + del.y});
+   
+    if(grow) grow = false;
+    else {
+        Point tail = body.back();
+        body.pop_back();
+        // removing tail
+        WriteAt(tail.x * YtoX, tail.y, " ");
+    }
 }
 
 bool Snake::CheckSelfCollision(){
+    /*If any part of body is at same posn of head*/ 
     for(int i = 1;i < body.size();i++){
-        if(body.front() == body[i]) return true;
+        if(body.front() == body[i]) return true;   
     }
     return false;
 }
 
-void Snake::SetDirection(Direction &newdir){
+void Snake::SetDirection(Direction newdir){
     if(dir == Up && newdir == Down) return;
     if(dir == Down && newdir == Up) return;
     if(dir == Left && newdir == Right) return;

@@ -15,13 +15,16 @@ Point DirectionMap(Direction dir);
 class Snake{
     std::deque<Point> body;
     bool grow;
-    Direction dir = Right;
+    Direction dir;
     double speed;
 public:
     Snake(int x, int y, int l, double s);
 
     // Is growing or not
     void Grow();         
+
+    // Intial Draw (Intialize one before run)
+    void InitDraw();
 
     // Draw the snakes 
     void Draw();    
@@ -33,7 +36,7 @@ public:
     bool CheckSelfCollision();    
 
     // Set Direction
-    void SetDirection(Direction &newdir);
+    void SetDirection(Direction newdir);
 
     // Get Body
     std::deque<Point>& GetBody();
