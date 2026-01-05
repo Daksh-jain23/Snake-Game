@@ -9,8 +9,13 @@ class Game{
     // Snake Controller
     void Control();
 
+    // Check game over condition
+    bool IsGameOver();
 
-    public:
+    // On Game over
+    void GameOver();
+
+public:
     Game();      
 
     void Run();   // Game Logic

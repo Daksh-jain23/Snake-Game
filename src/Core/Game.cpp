@@ -1,5 +1,6 @@
 #include "Core/Game.h"
 #include "Console/CursorController.h"
+#include "Utility/Constants.h"
 #include <windows.h>
 using namespace CursorController;
 
@@ -24,12 +25,17 @@ void Game::Control(){
     }
 }
 
-bool GameOver(Snake &snake, Grid &grid){
+bool Game::IsGameOver(){
     // Border Collision
     if(snake.GetHead().x == 0 || snake.GetHead().x == grid.Width()) return true;
     if(snake.GetHead().y == 0 || snake.GetHead().y == grid.Height()) return true;
 
     return snake.CheckSelfCollision();
+}
+
+void Game::GameOver(){
+    WriteAt(grid.Width()/2 * YtoX - 5, grid.Height()/2, "GAME OVER!");
+    MoveCursor(grid.Width() * YtoX, grid.Height());
 }
 
 void Game::Run(){
@@ -41,11 +47,10 @@ void Game::Run(){
         Control();
         snake.Move();
         snake.Draw();
-        ResetCursor();
-        if(GameOver(snake, grid)){
-            WriteAt(grid.Width()/2, grid.Height()/2, "GAME OVER");
-            WriteAt(grid.Width(), grid.Height(), " ");
-            break;
+
+        if(IsGameOver()){
+           GameOver();
+           break;
         }
     }
 }

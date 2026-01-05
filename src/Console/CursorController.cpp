@@ -17,8 +17,8 @@ namespace CursorController {
         }
     }
 
-    void ResetCursor() {
-        COORD pos = {0, 0};
+    void MoveCursor(int x, int y) {
+        COORD pos = { (SHORT)x, (SHORT)y };
         SetConsoleCursorPosition(hConsole, pos);
     }
 
