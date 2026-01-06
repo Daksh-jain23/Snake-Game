@@ -1,16 +1,6 @@
 #pragma once
 #include <deque>
-
-struct Point{
-    int x, y;
-    bool operator==(const Point &a){
-        return (x == a.x) && (y == a.y);
-    }
-};
-
-enum Direction{Up, Down, Left, Right};
-
-Point DirectionMap(Direction dir);
+#include "Utility/Coordinate.h"
 
 class Snake{
     std::deque<Point> body;
