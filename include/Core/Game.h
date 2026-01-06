@@ -20,6 +20,8 @@ class Game{
     // Food Spawner
     void SpawnFood();
 
+    // Check Food collision (eating)
+    
 public:
     Game();      
 

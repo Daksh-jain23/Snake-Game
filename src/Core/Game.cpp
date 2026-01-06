@@ -67,6 +67,7 @@ void Game::Run(){
     grid.Draw();
     snake.InitDraw();
     Random::Init();
+    
     while(true){
         Sleep(400);
         Control();

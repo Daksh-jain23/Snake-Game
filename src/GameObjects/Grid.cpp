@@ -7,13 +7,13 @@ Grid::Grid(int w, int h) : width(w), height(h) {}
 
 void Grid::Draw() const {
     for (int x = 0; x <= width; x++) {
-        WriteAt(x * YtoX, 0, "# ");
-        WriteAt(x * YtoX, height, "# ");
+        WriteAt(x * YtoX, 0, "X ");
+        WriteAt(x * YtoX, height, "X ");
     }
 
     for (int y = 1; y <= height; y++) {
-        WriteAt(0, y, "#");
-        WriteAt(width * YtoX, y, "#");
+        WriteAt(0, y, "X");
+        WriteAt(width * YtoX, y, "X");
     }
 }
 

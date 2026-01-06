@@ -9,5 +9,5 @@ Point& Food::GetPosition(){
 
 void Food::SetPos(Point p){
     pos = p;
-    WriteAt(p.x * YtoX, p.y, "@");
+    WriteAt(p.x * YtoX, p.y, "#");
 }
