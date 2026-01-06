@@ -61,22 +61,34 @@ void Game::SpawnFood(){
     food.SetPos(foodPos);
 }
 
+void Game::Eat(){
+    if(snake.GetHead() == food.GetPosition()){
+        score++;
+        snake.Grow();
+        SpawnFood();
+    }
+}
 
 void Game::Run(){
     RemoveCursor();
+    Random::Init();
+
     grid.Draw();
     snake.InitDraw();
-    Random::Init();
-    
+    SpawnFood();
+
     while(true){
-        Sleep(400);
+        Sleep(100);
         Control();
+
+        Eat();
         snake.Move();
         snake.Draw();
-        if(GetAsyncKeyState('F')) SpawnFood();
+
         if(IsGameOver()){
            GameOver();
            break;
         }
+        WriteAt(0, grid.Height()+2, "Score - " + std::to_string(score));
     }
 }

@@ -21,7 +21,8 @@ class Game{
     void SpawnFood();
 
     // Check Food collision (eating)
-    
+    void Eat();
+
 public:
     Game();      
 
