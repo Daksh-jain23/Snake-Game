@@ -1,7 +1,7 @@
 #include "GameObjects/Snake.h"
 #include "Console/CursorController.h"
 #include "Utility/Constants.h"
-
+#include "Assets/TextAssets.h"
 using namespace CursorController;
 
 /* Intializing snake
@@ -26,24 +26,24 @@ void Snake::Grow(){
 void Snake::InitDraw() {
     // draw head
     Point head = body.front();
-    WriteAt(head.x * YtoX, head.y, "@");
+    WriteAt(head.x * YtoX, head.y, TextAssets::SNAKE_HEAD);
 
     // draw body
     for (int i = 1; i < body.size(); i++) {
         Point p = body[i];
-        WriteAt(p.x * YtoX, p.y, "O");
+        WriteAt(p.x * YtoX, p.y, TextAssets::SNAKE_BODY);
     }
 }
 
 
 void Snake::Draw() {
     Point head = body.front();
-    WriteAt(head.x * YtoX, head.y, "@");
+    WriteAt(head.x * YtoX, head.y, TextAssets::SNAKE_HEAD);
 
     // turn previous head into body
     if (body.size() > 1) {
         Point prev = body[1];
-        WriteAt(prev.x * YtoX, prev.y, "O");
+        WriteAt(prev.x * YtoX, prev.y, TextAssets::SNAKE_BODY);
     }
 }
 
@@ -58,7 +58,7 @@ void Snake::Move(){
         Point tail = body.back();
         body.pop_back();
         // removing tail
-        WriteAt(tail.x * YtoX, tail.y, " ");
+        WriteAt(tail.x * YtoX, tail.y, TextAssets::SPACE);
     }
 }
 

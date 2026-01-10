@@ -2,6 +2,7 @@
 #include "Console/CursorController.h"
 #include "Utility/Constants.h"
 #include "Utility/Random.h"
+#include "Assets/TextAssets.h"
 #include <windows.h>
 using namespace CursorController;
 
@@ -37,7 +38,7 @@ bool Game::IsGameOver(){
 }
 
 void Game::GameOver(){
-    WriteAt(grid.Width()/2 * YtoX - 5, grid.Height()/2, "GAME OVER!");
+    WriteAt(0, grid.Height()/2-TextAssets::TextHeight/2, TextAssets::GAME_OVER);
     MoveCursor(0, grid.Height() + 10);
 }
 
@@ -70,6 +71,9 @@ void Game::Eat(){
 }
 
 void Game::Run(){
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+    ClearScreen();
     RemoveCursor();
     Random::Init();
 
