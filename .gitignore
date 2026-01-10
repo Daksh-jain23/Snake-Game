@@ -35,6 +35,7 @@
 # Executable
 *.exe
 *.out
+build/
 
 # debug information files
 *.dwo
