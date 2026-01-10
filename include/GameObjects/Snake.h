@@ -33,4 +33,7 @@ public:
 
     // Get Head
     Point& GetHead();
+
+    //
+    double GetSpeed() const;
 };

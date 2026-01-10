@@ -87,3 +87,7 @@ std::deque<Point>& Snake::GetBody(){
 Point& Snake::GetHead(){
     return body.front();
 }
+
+double Snake::GetSpeed() const{
+    return speed;
+}

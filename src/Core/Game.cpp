@@ -7,7 +7,7 @@
 #include <windows.h>
 using namespace CursorController;
 
-Game::Game() : grid(20, 20), snake(10,10,5,1){}
+Game::Game() : grid(20, 20), snake(10,10,5,10){}
 
 int Game::score = 0;
 
@@ -82,18 +82,29 @@ void Game::Run(){
     snake.InitDraw();
     SpawnFood();
 
+    const int frameDelay = 10; 
+    int moveTimer = 0;
+    int moveDelay = 1000 / snake.GetSpeed();
+
     while(true){
-        Sleep(100/Snake::speed);
         Control();
 
-        Eat();
-        snake.Move();
-        snake.Draw();
+        Sleep(frameDelay);
+        moveTimer += frameDelay;
 
-        if(IsGameOver()){
-           GameOver();
-           break;
+        if(moveTimer >= moveDelay){
+            moveTimer = 0;
+
+            Eat();
+            snake.Move();
+            snake.Draw();
+
+            if(IsGameOver()){
+                GameOver();
+                break;
+            }
+
+            WriteAt(0, grid.Height()+2, "Score - " + std::to_string(score), ColorAssets::SCORE_COLOR);
         }
-        WriteAt(0, grid.Height()+2, "Score - " + std::to_string(score), ColorAssets::SCORE_COLOR);
     }
 }
