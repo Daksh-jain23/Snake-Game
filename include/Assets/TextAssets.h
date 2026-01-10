@@ -24,4 +24,6 @@ namespace TextAssets {
     // Other texts
     extern const std::string TITLE;
     extern const std::string GAME_OVER;
+    extern const std::string SCORE;
+    extern const std::string WIN;
 }

@@ -16,6 +16,7 @@ Snake::Snake(int x, int y, int l, double s) {
         body.push_back({p.x - i, p.y});
     }
     dir = Right;
+    nextDir = Right;
     grow = false;
     speed = s;
 } 
@@ -50,6 +51,7 @@ void Snake::Draw() {
 
 
 void Snake::Move(){
+    dir = nextDir;
     Point del = DirectionMap(dir);
     Point head = body.front();
     body.push_front({head.x + del.x, head.y + del.y});
@@ -77,7 +79,7 @@ void Snake::SetDirection(Direction newdir){
     if(dir == Left && newdir == Right) return;
     if(dir == Right && newdir == Left) return;
 
-    dir = newdir;
+    nextDir = newdir;
 }
 
 std::deque<Point>& Snake::GetBody(){

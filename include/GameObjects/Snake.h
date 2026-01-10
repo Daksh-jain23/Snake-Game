@@ -6,6 +6,7 @@ class Snake{
     std::deque<Point> body;
     bool grow;
     Direction dir;
+    Direction nextDir;
     double speed;
 public:
     Snake(int x, int y, int l, double s);
