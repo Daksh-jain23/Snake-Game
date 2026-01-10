@@ -3,10 +3,11 @@
 #include "Utility/Constants.h"
 #include "Utility/Random.h"
 #include "Assets/TextAssets.h"
+#include "Assets/ColorAssets.h"
 #include <windows.h>
 using namespace CursorController;
 
-Game::Game() : grid(30, 30), snake(16,16,5,1){}
+Game::Game() : grid(20, 20), snake(10,10,5,1){}
 
 int Game::score = 0;
 
@@ -38,7 +39,7 @@ bool Game::IsGameOver(){
 }
 
 void Game::GameOver(){
-    WriteAt(0, grid.Height()/2-TextAssets::TextHeight/2, TextAssets::GAME_OVER);
+    WriteAt(0, grid.Height()/2-TextAssets::TextHeight/2, TextAssets::GAME_OVER, ColorAssets::GAME_OVER_COLOR);
     MoveCursor(0, grid.Height() + 10);
 }
 
@@ -82,7 +83,7 @@ void Game::Run(){
     SpawnFood();
 
     while(true){
-        Sleep(100);
+        Sleep(100/Snake::speed);
         Control();
 
         Eat();
@@ -93,6 +94,6 @@ void Game::Run(){
            GameOver();
            break;
         }
-        WriteAt(0, grid.Height()+2, "Score - " + std::to_string(score));
+        WriteAt(0, grid.Height()+2, "Score - " + std::to_string(score), ColorAssets::SCORE_COLOR);
     }
 }

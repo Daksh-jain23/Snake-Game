@@ -54,10 +54,10 @@ namespace CursorController {
         SetCurrentConsoleFontEx(hConsole, FALSE, &cfi);
     }
 
-    void WriteAt(int x, int y, const std::string& text) {
+    void WriteAt(int x, int y, const std::string& text, int color ) {
         COORD pos = { (SHORT)x, (SHORT)y };
         SetConsoleCursorPosition(hConsole, pos);
-
+        SetConsoleTextAttribute(hConsole, color);
         DWORD written;
         WriteConsoleA(
             hConsole, text.c_str(),

@@ -2,6 +2,7 @@
 #include "Console/CursorController.h"
 #include "Utility/Constants.h"
 #include "Assets/TextAssets.h"
+#include "Assets/ColorAssets.h"
 using namespace CursorController;
 
 Point& Food::GetPosition(){
@@ -10,5 +11,5 @@ Point& Food::GetPosition(){
 
 void Food::SetPos(Point p){
     pos = p;
-    WriteAt(p.x * YtoX, p.y, TextAssets::FOOD);
+    WriteAt(p.x * YtoX, p.y, TextAssets::FOOD, ColorAssets::FOOD_COLOR);
 }
